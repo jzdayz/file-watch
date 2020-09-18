@@ -1,0 +1,7 @@
+wf:
+  path: /Users/huqingfeng/Downloads/a
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 1
