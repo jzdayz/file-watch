@@ -1,7 +1,14 @@
 wf:
-  path: /Users/huqingfeng/Downloads/a
+  path: /Users/huqingfeng/Downloads
+  saved-days: 7
 spring:
   task:
     scheduling:
       pool:
         size: 1
+logging:
+  file:
+    # 适配不同os
+    path: ${user.dir}${file.separator}fw-logs
+    max-history: 7
+    max-size: 10MB

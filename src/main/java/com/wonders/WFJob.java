@@ -8,8 +8,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,6 +32,15 @@ public class WFJob {
     private List<Exclude> excludeList;
 
     private static final String FILE_LOCK_NAME = "FILE_LOCK_NAME";
+
+    @PostConstruct
+    public void check(){
+        if (!Files.exists(Paths.get(wfProperties.getPath()))){
+            log.error("无法监控的path:{}",wfProperties.getPath());
+            System.exit(1);
+        }
+    }
+
 
     /**
      * 单线程去删除不必须的数据库备份
